@@ -10,7 +10,7 @@ import (
 func TestExpirationMapWithInt(t *testing.T) {
 	key := "test"
 	val := 123
-	miMap := CreateCachedMap[string, int](int64(3))
+	miMap := NewInMemoryCache[string, int](int64(3))
 
 	err := miMap.Put(key, val)
 	assert.Equal(t, err, nil)
@@ -27,7 +27,7 @@ func TestExpirationMapWithInt(t *testing.T) {
 func TestExpirationMapWithIntDelete(t *testing.T) {
 	key := "test"
 	val := 123
-	miMap := CreateCachedMap[string, int](int64(3))
+	miMap := NewInMemoryCache[string, int](int64(3))
 
 	err := miMap.Put(key, val)
 	assert.Equal(t, err, nil)
@@ -46,7 +46,7 @@ func TestExpirationMapWithIntDelete(t *testing.T) {
 func TestExpirationMapWithString(t *testing.T) {
 	key := "test"
 	val := "testOut"
-	miMap := CreateCachedMap[string, string](int64(3))
+	miMap := NewInMemoryCache[string, string](int64(3))
 
 	err := miMap.Put(key, val)
 	assert.Equal(t, err, nil)
@@ -62,7 +62,7 @@ func TestExpirationMapWithString(t *testing.T) {
 func TestExpirationMapWithoutExpiration(t *testing.T) {
 	key := "test"
 	val := "testOut"
-	miMap := CreateCachedMap[string, string](int64(0))
+	miMap := NewInMemoryCache[string, string](int64(0))
 	err := miMap.Put(key, val)
 	assert.Equal(t, err, nil)
 	time.Sleep(20 * time.Second)
